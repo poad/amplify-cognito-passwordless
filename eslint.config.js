@@ -29,6 +29,8 @@ export default tseslint.config(
       'node_modules/**/*',
       '.next',
       'out',
+      'cdk.out',
+      '.amplify',
     ],
   },
   eslint.configs.recommended,

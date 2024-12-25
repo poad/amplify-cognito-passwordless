@@ -1,5 +1,5 @@
 import { useAuthenticator } from '@aws-amplify/ui-react';
-import { confirmSignIn, signIn } from "aws-amplify/auth"
+import { confirmSignIn, signIn } from 'aws-amplify/auth';
 import '@aws-amplify/ui-react/styles.css';
 import { FormEvent, useState } from 'react';
 
@@ -21,14 +21,14 @@ interface OTPForm extends HTMLFormElement {
 
 function App() {
   const { signOut, authStatus } = useAuthenticator((context) => [
-    context.authStatus
+    context.authStatus,
   ]);
 
   const [signInStep, setSignInStep] = useState('SIGN_IN_WITH_EMAIL');
 
   async function handleSubmitFirst(event: FormEvent<SignInForm>) {
     event.preventDefault();
-    const form = event.currentTarget
+    const form = event.currentTarget;
     // ... validate inputs
     const { nextStep: signInNextStep } = await signIn({
       username: form.elements.email.value,
@@ -43,7 +43,7 @@ function App() {
   async function handleSubmitSecond(event: FormEvent<OTPForm>) {
     event.preventDefault();
     if (signInStep === 'CONFIRM_SIGN_IN_WITH_EMAIL_CODE') {
-      const form = event.currentTarget
+      const form = event.currentTarget;
       // prompt user for otp code delivered via email
       const { nextStep: confirmSignInNextStep } = await confirmSignIn({
         challengeResponse: form.elements.challengeResponse.value,
